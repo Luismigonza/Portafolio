@@ -2,15 +2,18 @@ import type { Hito, Proyecto } from "./types";
 
 export const PROYECTOS: Proyecto[] = [
   {
-    nombre: "Nombre del proyecto",
+    nombre: "CERBERUS",
     anio: "2026",
-    rol: "Backend",
+    rol: "Backend · VulnerabilityService",
     resumen:
-      "Describe el problema que resolvía y la decisión técnica que más pesó. Un reclutador lee esto en diez segundos: cuenta el porqué, no la lista de features.",
-    stack: ["ASP.NET Core", "SQL Server", "Docker"],
+      "Plataforma DevSecOps construida por un equipo de 6 en 15 días: escanea repos en busca de secretos expuestos, CVEs y vulnerabilidades web, y bloquea despliegues inseguros. Construí VulnerabilityService, el microservicio que normaliza los formatos completamente distintos de Gitleaks, Trivy y ZAP a un contrato único — con idempotencia real vía constraint de PostgreSQL para sobrevivir a los reintentos automáticos de n8n.",
+    stack: [".NET 8", "PostgreSQL", "RabbitMQ", "Docker", "Kubernetes"],
     eje: "X",
     enlace: null,
-    estado: "Por completar",
+    repo: "https://github.com/Cerberus-Riwi/cerberus-vulnerability",
+    imagenes: [],
+    video: "/proyectos/cerberus/demo.mp4",
+    estado: "Completado",
   },
   {
     nombre: "Nombre del proyecto",
@@ -21,6 +24,9 @@ export const PROYECTOS: Proyecto[] = [
     stack: ["Angular", "TypeScript", "SCSS"],
     eje: "Y",
     enlace: null,
+    repo: null,
+    imagenes: [],
+    video: null,
     estado: "Por completar",
   },
   {
@@ -32,6 +38,9 @@ export const PROYECTOS: Proyecto[] = [
     stack: ["Node.js", "PostgreSQL", "Docker"],
     eje: "Z",
     enlace: null,
+    repo: null,
+    imagenes: [],
+    video: null,
     estado: "Por completar",
   },
 ];

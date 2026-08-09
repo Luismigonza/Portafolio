@@ -5,7 +5,7 @@ export const PERFIL: Perfil = {
   handle: "luismigonza",
   rol: "Desarrollador .NET & Angular",
   ciudad: "Itagüí, Antioquia",
-  email: "tucorreo@ejemplo.com",
+  email: "luismigonzalez38@gmail.com",
   github: "https://github.com/luismigonza",
 };
 

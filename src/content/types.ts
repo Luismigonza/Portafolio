@@ -35,6 +35,9 @@ export interface Proyecto {
   stack: string[];
   eje: EjeId;
   enlace: string | null;
+  repo: string | null;
+  imagenes: string[];
+  video: string | null;
   estado: string;
 }
 
