@@ -1,0 +1,13 @@
+.typed {
+  color: var(--muted);
+}
+
+.caret {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: var(--select);
+  margin-left: 3px;
+  vertical-align: -2px;
+  animation: blink 1.05s steps(2) infinite;
+}

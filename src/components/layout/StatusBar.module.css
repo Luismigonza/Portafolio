@@ -1,0 +1,49 @@
+.bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: var(--status-h);
+  padding: 0 var(--pad);
+  background: var(--panel);
+  border-top: 1px solid var(--grid);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.live i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--axis-y);
+  box-shadow: 0 0 6px var(--axis-y);
+}
+
+.fill { flex: 1; }
+
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--select);
+  transition: width 0.1s linear;
+}
+
+@media (max-width: 700px) {
+  .hideSm { display: none; }
+}

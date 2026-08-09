@@ -1,0 +1,36 @@
+.wrap {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  display: none;
+}
+
+.v,
+.h {
+  position: absolute;
+  background: var(--select);
+  opacity: 0.11;
+}
+
+.v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  left: var(--mx, -10px);
+}
+
+.h {
+  left: 0;
+  right: 0;
+  height: 1px;
+  top: var(--my, -10px);
+}
+
+@media (pointer: fine) {
+  .wrap { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap { display: none; }
+}

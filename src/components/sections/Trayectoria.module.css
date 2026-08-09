@@ -1,0 +1,71 @@
+.line {
+  position: relative;
+  max-width: 760px;
+}
+
+.line::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--grid);
+}
+
+.item {
+  position: relative;
+  padding-left: 34px;
+  padding-bottom: 38px;
+}
+
+.item:last-child { padding-bottom: 0; }
+
+.node {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid var(--select);
+  background: var(--void);
+}
+
+.node::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--select);
+}
+
+.period {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--select);
+}
+
+.title {
+  margin-top: 8px;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.015em;
+}
+
+.place {
+  margin-top: 4px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.text {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 14.5px;
+}

@@ -1,0 +1,32 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px 40px;
+}
+
+.learning {
+  margin-top: 46px;
+  padding-top: 30px;
+  border-top: 1px dashed var(--grid);
+}
+
+.wip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.wip i {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--axis-z);
+}
+
+.wip:hover {
+  border-color: var(--axis-z);
+  color: var(--axis-z);
+}
