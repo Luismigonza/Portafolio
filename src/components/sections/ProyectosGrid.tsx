@@ -94,11 +94,13 @@ export default function ProyectosGrid({ proyectos }: Props) {
               <p className={styles.role}>{p.rol}</p>
               <p className={styles.summary}>{p.resumen}</p>
 
-              <div className={styles.stack}>
-                {p.stack.map((s) => (
-                  <span key={s}>{s}</span>
-                ))}
-              </div>
+              {p.stack.length > 0 && (
+                <div className={styles.stack}>
+                  {p.stack.map((s) => (
+                    <span key={s}>{s}</span>
+                  ))}
+                </div>
+              )}
 
               <span className={styles.cta}>
                 Ver detalles <span aria-hidden="true">→</span>
@@ -193,11 +195,13 @@ export default function ProyectosGrid({ proyectos }: Props) {
               <p className={styles.role}>{proyecto.rol}</p>
               <p className={styles.summary}>{proyecto.resumen}</p>
 
-              <div className={styles.stack}>
-                {proyecto.stack.map((s) => (
-                  <span key={s}>{s}</span>
-                ))}
-              </div>
+              {proyecto.stack.length > 0 && (
+                <div className={styles.stack}>
+                  {proyecto.stack.map((s) => (
+                    <span key={s}>{s}</span>
+                  ))}
+                </div>
+              )}
 
               {(proyecto.enlace || proyecto.repo) && (
                 <div className={styles.links}>
