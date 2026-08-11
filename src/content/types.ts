@@ -47,3 +47,10 @@ export interface Hito {
   lugar: string;
   texto: string;
 }
+
+export interface Certificacion {
+  nombre: string;
+  institucion: string;
+  anio: string;
+  archivo: string | null;
+}

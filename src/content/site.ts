@@ -15,6 +15,7 @@ export const SECCIONES: Seccion[] = [
   { id: "stack", nombre: "stack" },
   { id: "trabajo", nombre: "trabajo" },
   { id: "trayectoria", nombre: "trayectoria" },
+  { id: "certificaciones", nombre: "certificaciones" },
   { id: "contacto", nombre: "contacto" },
 ];
 

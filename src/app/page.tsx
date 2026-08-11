@@ -1,5 +1,6 @@
 import Chrome from "@/components/layout/Chrome";
 import Footer from "@/components/layout/Footer";
+import Certificaciones from "@/components/sections/Certificaciones";
 import Contacto from "@/components/sections/Contacto";
 import Ejes from "@/components/sections/Ejes";
 import Hero from "@/components/sections/Hero";
@@ -19,6 +20,7 @@ export default function Home() {
         <Stack />
         <Proyectos />
         <Trayectoria />
+        <Certificaciones />
         <Contacto />
       </main>
       <Footer />
