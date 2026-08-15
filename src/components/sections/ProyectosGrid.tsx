@@ -147,7 +147,7 @@ export default function ProyectosGrid({ proyectos }: Props) {
                 <div className={styles.mediaFrame}>
                   <Image
                     key={imgIndex}
-                    src={proyecto.imagenes[imgIndex]}
+                    src={assetUrl(proyecto.imagenes[imgIndex])}
                     alt={`${proyecto.nombre} — captura ${imgIndex + 1}`}
                     fill
                     sizes="(max-width: 640px) 100vw, 640px"

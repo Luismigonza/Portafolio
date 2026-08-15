@@ -77,7 +77,7 @@ export default function CertificacionesGrid({ certificaciones }: Props) {
               {c.archivo && esPdfFile && <span className={styles.thumbPdf}>PDF</span>}
               {c.archivo && !esPdfFile && (
                 <Image
-                  src={c.archivo}
+                  src={assetUrl(c.archivo)}
                   alt={c.nombre}
                   fill
                   sizes="(max-width: 640px) 100vw, 320px"
@@ -153,7 +153,7 @@ export default function CertificacionesGrid({ certificaciones }: Props) {
 
             <div className={styles.imageFrame}>
               <Image
-                src={cert.archivo}
+                src={assetUrl(cert.archivo)}
                 alt={cert.nombre}
                 fill
                 sizes="(max-width: 640px) 100vw, 640px"
