@@ -2,23 +2,87 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import type { Proyecto } from "@/content/types";
+import { EJES } from "@/content/skills";
+import type { EjeId, Proyecto } from "@/content/types";
 import { AXIS_COLOR } from "@/lib/axis";
 import { assetUrl } from "@/lib/paths";
 import Reveal from "@/components/ui/Reveal";
 import styles from "./Proyectos.module.css";
 
+const EJE_TITULO = Object.fromEntries(EJES.map((e) => [e.eje, e.titulo])) as Record<EjeId, string>;
+
+const EJES_ORDEN: EjeId[] = ["X", "Y", "Z"];
+
 interface Props {
   proyectos: Proyecto[];
+}
+
+function TarjetaProyecto({
+  p,
+  i,
+  onAbrir,
+}: {
+  p: Proyecto;
+  i: number;
+  onAbrir: (i: number) => void;
+}) {
+  return (
+    <Reveal
+      as="article"
+      delay={(i % 6) * 70}
+      className={styles.card}
+      style={{ "--c": AXIS_COLOR[p.eje] } as CSSProperties}
+    >
+      <button
+        type="button"
+        className={styles.trigger}
+        onClick={() => onAbrir(i)}
+        aria-haspopup="dialog"
+      >
+        <div className={styles.meta}>
+          <span>{p.anio}</span>
+          <span className={styles.state}>{p.estado}</span>
+        </div>
+
+        <h3 className={styles.name}>{p.nombre}</h3>
+        <p className={styles.role}>{p.rol}</p>
+        <p className={styles.summary}>{p.resumen}</p>
+
+        {p.stack.length > 0 && (
+          <div className={styles.stack}>
+            {p.stack.map((s) => (
+              <span key={s}>{s}</span>
+            ))}
+          </div>
+        )}
+
+        <span className={styles.cta}>
+          Ver detalles <span aria-hidden="true">→</span>
+        </span>
+      </button>
+
+      <div className={styles.edge} aria-hidden="true" />
+    </Reveal>
+  );
 }
 
 export default function ProyectosGrid({ proyectos }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const [imgIndex, setImgIndex] = useState(0);
+  const [filtro, setFiltro] = useState<"todos" | EjeId>("todos");
   const triggerRef = useRef<HTMLElement | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   const proyecto = selected !== null ? proyectos[selected] : null;
+
+  const grupos = EJES_ORDEN.map((eje) => ({
+    eje,
+    items: proyectos
+      .map((p, i) => ({ p, i }))
+      .filter(({ p }) => p.eje === eje),
+  })).filter((g) => g.items.length > 0);
+
+  const grupoActivo = filtro === "todos" ? null : grupos.find((g) => g.eje === filtro) ?? null;
 
   const abrir = (i: number) => {
     triggerRef.current = document.activeElement as HTMLElement;
@@ -70,47 +134,54 @@ export default function ProyectosGrid({ proyectos }: Props) {
 
   return (
     <>
-      <div className={styles.grid}>
-        {proyectos.map((p, i) => (
-          <Reveal
-            key={`${p.nombre}-${i}`}
-            as="article"
-            delay={i * 70}
-            className={styles.card}
-            style={{ "--c": AXIS_COLOR[p.eje] } as CSSProperties}
+      <div className={styles.filtros} role="group" aria-label="Filtrar proyectos por eje">
+        <button
+          type="button"
+          className={`${styles.filtroChip} ${filtro === "todos" ? styles.activo : ""}`}
+          aria-pressed={filtro === "todos"}
+          onClick={() => setFiltro("todos")}
+        >
+          Todos
+        </button>
+        {EJES_ORDEN.map((eje) => (
+          <button
+            key={eje}
+            type="button"
+            className={`${styles.filtroChip} ${filtro === eje ? styles.activo : ""}`}
+            style={{ "--c": AXIS_COLOR[eje] } as CSSProperties}
+            aria-pressed={filtro === eje}
+            onClick={() => setFiltro(eje)}
           >
-            <button
-              type="button"
-              className={styles.trigger}
-              onClick={() => abrir(i)}
-              aria-haspopup="dialog"
-            >
-              <div className={styles.meta}>
-                <span>{p.anio}</span>
-                <span className={styles.state}>{p.estado}</span>
-              </div>
-
-              <h3 className={styles.name}>{p.nombre}</h3>
-              <p className={styles.role}>{p.rol}</p>
-              <p className={styles.summary}>{p.resumen}</p>
-
-              {p.stack.length > 0 && (
-                <div className={styles.stack}>
-                  {p.stack.map((s) => (
-                    <span key={s}>{s}</span>
-                  ))}
-                </div>
-              )}
-
-              <span className={styles.cta}>
-                Ver detalles <span aria-hidden="true">→</span>
-              </span>
-            </button>
-
-            <div className={styles.edge} aria-hidden="true" />
-          </Reveal>
+            {EJE_TITULO[eje]}
+          </button>
         ))}
       </div>
+
+      {filtro === "todos" &&
+        grupos.map((g) => (
+          <div key={g.eje} className={styles.grupo}>
+            <div className={styles.grupoTitulo}>
+              <span className={styles.grupoDot} style={{ "--c": AXIS_COLOR[g.eje] } as CSSProperties} />
+              {EJE_TITULO[g.eje]}
+            </div>
+            <div className={styles.grid}>
+              {g.items.map(({ p, i }) => (
+                <TarjetaProyecto key={`${p.nombre}-${i}`} p={p} i={i} onAbrir={abrir} />
+              ))}
+            </div>
+          </div>
+        ))}
+
+      {filtro !== "todos" &&
+        (grupoActivo ? (
+          <div className={styles.grid}>
+            {grupoActivo.items.map(({ p, i }) => (
+              <TarjetaProyecto key={`${p.nombre}-${i}`} p={p} i={i} onAbrir={abrir} />
+            ))}
+          </div>
+        ) : (
+          <p className={styles.sinResultados}>Todavía no hay proyectos en este eje.</p>
+        ))}
 
       {proyecto && (
         <div className={styles.overlay} onClick={cerrar}>

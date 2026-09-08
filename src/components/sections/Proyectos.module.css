@@ -4,6 +4,71 @@
   gap: 16px;
 }
 
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 32px;
+}
+
+.filtroChip {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 7px 13px;
+  border: 1px solid var(--grid);
+  border-radius: 3px;
+  color: var(--bone);
+  background: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.filtroChip:hover {
+  border-color: var(--select);
+  color: var(--select);
+}
+
+.filtroChip.activo {
+  border-color: var(--c, var(--select));
+  color: var(--c, var(--select));
+}
+
+.grupo {
+  margin-top: 36px;
+}
+
+.grupo:first-child {
+  margin-top: 0;
+}
+
+.grupoTitulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--grid);
+}
+
+.grupoDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.sinResultados {
+  color: var(--muted);
+  font-size: 14px;
+  padding: 40px 0;
+  text-align: center;
+}
+
 .card {
   position: relative;
   overflow: hidden;
