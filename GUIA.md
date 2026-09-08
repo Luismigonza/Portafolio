@@ -161,11 +161,20 @@ el push — no hay que hacer nada manual después. El sitio queda actualizado en
 - Un `@keyframes` de una animación CSS tiene que estar **dentro del mismo
   `.module.css`** que lo usa, no en `globals.css` — si algún día una animación deja de
   correr silenciosamente, ese es el primer sospechoso (ya nos pasó una vez).
+- **Toda imagen o video de `public/` necesita pasar por `assetUrl()`** (de
+  `src/lib/paths.ts`) para que le agregue el `basePath`. `next/image` con
+  `unoptimized: true` **no lo hace solo** — nos pasó con las imágenes de Snapshot,
+  se veían rotas hasta que se corrigió. Si algún día agregas una sección nueva con
+  imágenes o video propio, usa `assetUrl(ruta)` en el `src`, tal como ya está hecho en
+  `ProyectosGrid.tsx` y `CertificacionesGrid.tsx`.
 
 ---
 
 ## 8. Pendientes actuales
 
-- [ ] Terminar y subir el segundo proyecto ("Próximamente", eje Y / Frontend)
-- [ ] Terminar y subir el tercer proyecto ("Próximamente", eje Z / Infraestructura)
+- [ ] Un proyecto para el eje Z (Infraestructura) — sigue en "Próximamente". Los tres
+      proyectos reales que tienes (CERBERUS, Snapshot, ProviderHub) son backend y
+      frontend; falta uno cuyo entregable principal sea infraestructura/DevOps de
+      verdad (un pipeline propio, un cluster, IaC) para que el color del eje Z sea
+      honesto y no una etiqueta forzada.
 - [ ] Imagen Open Graph (la que se ve al compartir el link en redes o WhatsApp)

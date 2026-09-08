@@ -30,6 +30,27 @@ export const PROYECTOS: Proyecto[] = [
     estado: "Completado",
   },
   {
+    nombre: "ProviderHub",
+    anio: "2026",
+    rol: "Full-stack · en solitario",
+    resumen:
+      "Prueba técnica full-stack para Tekus S.A.S.: gestión de proveedores, los servicios que ofrece cada uno, en qué países y a qué tarifa. Backend en Clean Architecture con DDD, con una decisión que vale la pena explicar: dejé el mediator afuera — con once casos de uso, Send(command) solo agrega indirección y esconde en tiempo de compilación quién maneja qué. Los eventos de dominio se despachan solo después del commit, para que una notificación nunca anuncie algo que un rollback pueda desmentir. 224 pruebas (191 backend, 33 frontend) con CI en verde, corriendo las de integración contra una base de datos real.",
+    stack: [".NET 10", "Angular 21", "SQL Server", "EF Core", "Docker"],
+    eje: "X",
+    enlace: null,
+    repo: "https://github.com/Luismigonza/ProviderHub",
+    imagenes: [
+      "/proyectos/providerhub/02-dashboard.png",
+      "/proyectos/providerhub/03-providers.png",
+      "/proyectos/providerhub/04-provider-detail.png",
+      "/proyectos/providerhub/05-services.png",
+      "/proyectos/providerhub/06-conflict.png",
+      "/proyectos/providerhub/01-login.png",
+    ],
+    video: null,
+    estado: "Completado",
+  },
+  {
     nombre: "Próximamente",
     anio: "2026",
     rol: "En construcción",
