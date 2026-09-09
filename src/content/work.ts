@@ -51,18 +51,25 @@ export const PROYECTOS: Proyecto[] = [
     estado: "Completado",
   },
   {
-    nombre: "Próximamente",
+    nombre: "Infraestructura AWS",
     anio: "2026",
-    rol: "En construcción",
+    rol: "Infraestructura · en solitario",
     resumen:
-      "Estoy terminando este proyecto para subirlo pronto — vuelve pronto a ver los detalles.",
-    stack: [],
+      "Infraestructura de una app en AWS definida 100% en código: nada se crea a mano en la consola, y los cambios pasan por Pull Request con el plan comentado antes de aplicarse, igual que el código de una aplicación. La decisión que más vale explicar: ECS y RDS se necesitan mutuamente para su Security Group, así que la base de datos expone un segundo grupo vacío que funciona como 'pase de entrada' — define su política de acceso sin conocer a sus clientes. El pipeline entra a AWS por OIDC, sin una sola credencial de larga duración, y cada verificación del README está comprobada contra la API real de AWS, no solo declarada.",
+    stack: ["Terraform", "AWS", "ECS Fargate", "RDS PostgreSQL", "GitHub Actions"],
     eje: "Z",
     enlace: null,
-    repo: null,
-    imagenes: [],
+    repo: "https://github.com/Luismigonza/infraestructura-aws",
+    imagenes: [
+      "/proyectos/infraestructura-aws/1-plan-en-pr.png",
+      "/proyectos/infraestructura-aws/2-esperando-aprobacion.png",
+      "/proyectos/infraestructura-aws/3-aprobacion-registrada.png",
+      "/proyectos/infraestructura-aws/4-apply-completado.png",
+      "/proyectos/infraestructura-aws/5-app-respondiendo.png",
+      "/proyectos/infraestructura-aws/6-dos-tareas-dos-zonas.png",
+    ],
     video: null,
-    estado: "Próximamente",
+    estado: "Completado",
   },
 ];
 

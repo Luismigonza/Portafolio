@@ -172,9 +172,7 @@ el push — no hay que hacer nada manual después. El sitio queda actualizado en
 
 ## 8. Pendientes actuales
 
-- [ ] Un proyecto para el eje Z (Infraestructura) — sigue en "Próximamente". Los tres
-      proyectos reales que tienes (CERBERUS, Snapshot, ProviderHub) son backend y
-      frontend; falta uno cuyo entregable principal sea infraestructura/DevOps de
-      verdad (un pipeline propio, un cluster, IaC) para que el color del eje Z sea
-      honesto y no una etiqueta forzada.
 - [ ] Imagen Open Graph (la que se ve al compartir el link en redes o WhatsApp)
+
+Los cuatro ejes ya tienen proyecto real: CERBERUS y ProviderHub (X), Snapshot (Y),
+Infraestructura AWS (Z).
