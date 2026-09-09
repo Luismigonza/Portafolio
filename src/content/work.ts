@@ -75,18 +75,18 @@ export const PROYECTOS: Proyecto[] = [
 
 export const TRAYECTORIA: Hito[] = [
   {
-    periodo: "2025 — hoy",
-    titulo: "Desarrollador en formación",
-    lugar: "RIWI",
-    texto:
-      "Seis meses trabajando en retos de equipo con roles reales de la industria: backend, frontend y despliegue.",
-  },
-  {
     periodo: "2023 — 2025",
     titulo: "Tecnólogo en Análisis y Desarrollo de Software",
     lugar: "SENA",
     texto:
       "Fundamentos de programación, bases de datos, ciclo de vida del software y desarrollo de aplicaciones.",
+  },
+  {
+    periodo: "2025 — hoy",
+    titulo: "Desarrollador en formación",
+    lugar: "RIWI",
+    texto:
+      "Seis meses trabajando en retos de equipo con roles reales de la industria: backend, frontend y despliegue.",
   },
   {
     periodo: "En curso",
