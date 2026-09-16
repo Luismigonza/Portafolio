@@ -3,7 +3,7 @@ import type { Perfil, Seccion } from "./types";
 export const PERFIL: Perfil = {
   nombre: "Luis Miguel González Berrio",
   handle: "luismigonza",
-  rol: "Desarrollador .NET & Angular",
+  rol: "Desarrollador Full Stack · .NET & Angular",
   ciudad: "Itagüí, Antioquia",
   email: "luismigonzalez38@gmail.com",
   github: "https://github.com/luismigonza",
