@@ -71,6 +71,20 @@ export const PROYECTOS: Proyecto[] = [
     video: null,
     estado: "Completado",
   },
+  {
+    nombre: "PQRS.ai",
+    anio: "2026",
+    rol: "Backend · IA y multi-tenant",
+    resumen:
+      "SaaS multi-tenant de gestión de PQRS con IA: cada empresa instala un widget que primero intenta resolver la consulta con RAG sobre su propia base de conocimiento, y si no puede, radica el caso con triaje automático (tipo, prioridad, sentimiento) vía un LLM local con Ollama — sin depender de una API paga. El aislamiento entre empresas no es solo un filtro de conveniencia: el TenantId se resuelve primero desde el claim del JWT, así un agente autenticado no puede leer datos de otra empresa así falsifique el header. Si el motor de IA se cae, el ticket se guarda igual con valores por defecto — el triaje enriquece, no bloquea.",
+    stack: [".NET", "PostgreSQL", "pgvector", "Ollama", "SignalR"],
+    eje: "X",
+    enlace: null,
+    repo: "https://github.com/Luismigonza/Plataforma-SaaS-Multi-tenant",
+    imagenes: [],
+    video: "/proyectos/pqrs-ai/demo.mp4",
+    estado: "Completado",
+  },
 ];
 
 export const TRAYECTORIA: Hito[] = [
