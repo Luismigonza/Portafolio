@@ -4,11 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import { PERFIL, SECCIONES } from "@/content/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
+import Bi from "@/components/ui/Bi";
 import styles from "./StatusBar.module.css";
 
 export default function StatusBar() {
   const ids = useMemo(() => SECCIONES.map((s) => s.id), []);
   const active = useActiveSection(ids);
+  const activeSeccion = SECCIONES.find((s) => s.id === active);
   const progress = useScrollProgress();
   const [clock, setClock] = useState("");
 
@@ -31,9 +33,11 @@ export default function StatusBar() {
   return (
     <div className={styles.bar}>
       <span className={`${styles.item} ${styles.live}`}>
-        <i /> {active}
+        <i /> {activeSeccion ? <Bi value={activeSeccion.nombre} /> : active}
       </span>
-      <span className={`${styles.item} ${styles.hideSm}`}>{PERFIL.rol.toLowerCase()}</span>
+      <span className={`${styles.item} ${styles.hideSm}`}>
+        <Bi value={PERFIL.rol} />
+      </span>
       <span className={styles.fill} />
       <span className={`${styles.item} ${styles.hideSm}`}>scroll {progress}%</span>
       <span className={styles.item}>{clock}</span>

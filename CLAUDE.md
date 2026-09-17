@@ -39,6 +39,19 @@ sección nueva es un par `.tsx` + `.module.css` en `sections/`.
   primitivas compartidas (`.btn`, `.chip`, `.section`) son globales.
 - **Contacto por `mailto:`**, no formulario. Consecuencia consciente del
   export estático.
+- **Bilingüe ES/EN sin rutas separadas.** Cada texto vive como
+  `{ es, en }` (tipo `Bilingue` en `content/types.ts`) y se renderiza
+  DOS VECES en el HTML estático vía el componente `<Bi>`
+  (`<span lang="es">` / `<span lang="en">`); `globals.css` esconde el
+  que no corresponde según `<html lang>`. El botón del Nav solo cambia
+  ese atributo + `localStorage`, sin JS de re-render. Se eligió sobre
+  `/en/` con `[locale]` porque el sitio es una sola página con anclas
+  (no rutas), y porque el caso real es legibilidad para reclutadores que
+  ya llegan al link, no descubrimiento por SEO en inglés — con esa meta,
+  duplicar rutas era complejidad sin beneficio real. Costo aceptado: sin
+  URL propia en inglés, SEO en inglés no es óptimo. Excepción: los
+  nombres de certificados (`Certificacion.nombre`) no son bilingües a
+  propósito — son títulos de credenciales reales.
 
 ## Gotchas conocidos
 
@@ -48,6 +61,12 @@ sección nueva es un par `.tsx` + `.module.css` en `sections/`.
   mismatch, que en export estático sería permanente.
 - `public/.nojekyll` es obligatorio. Sin él, Jekyll ignora `_next/`.
 - Verificar antes de publicar: `npx tsc --noEmit && npm run build`.
+- Toda imagen o video en `public/` necesita `assetUrl()` (`lib/paths.ts`)
+  para el `basePath` — `next/image` con `unoptimized: true` no lo agrega
+  solo.
+- Las reglas `html[lang="es"] [lang="en"] { display: none }` en
+  `globals.css` son las que hacen funcionar el toggle de idioma — deben
+  quedar globales, no en un `.module.css` (quedarían scopeadas).
 
 ## Cómo quiero que trabajes conmigo
 
@@ -60,6 +79,4 @@ código que funcione sin saber por qué.
 
 ## Pendientes
 
-- [ ] Reemplazar `email` y `github` en `src/content/site.ts` (placeholders)
-- [ ] Proyectos reales en `src/content/work.ts` (las 3 tarjetas son moldes)
 - [ ] Imagen Open Graph

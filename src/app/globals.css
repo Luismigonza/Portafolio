@@ -25,6 +25,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ---------- i18n: el idioma inactivo se oculta por CSS, ambos ya están en el HTML ---------- */
+
+html[lang="es"] [lang="en"] { display: none; }
+html[lang="en"] [lang="es"] { display: none; }
+
 body {
   margin: 0;
   background: var(--void);

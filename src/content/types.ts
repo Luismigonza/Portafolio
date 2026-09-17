@@ -1,9 +1,14 @@
 export type EjeId = "X" | "Y" | "Z";
 
+export interface Bilingue {
+  es: string;
+  en: string;
+}
+
 export interface Perfil {
   nombre: string;
   handle: string;
-  rol: string;
+  rol: Bilingue;
   ciudad: string;
   email: string;
   github: string;
@@ -12,40 +17,40 @@ export interface Perfil {
 
 export interface Seccion {
   id: string;
-  nombre: string;
+  nombre: Bilingue;
 }
 
 export interface Eje {
   eje: EjeId;
-  titulo: string;
-  texto: string;
-  detalle: string[];
+  titulo: Bilingue;
+  texto: Bilingue;
+  detalle: Bilingue[];
 }
 
 export interface GrupoStack {
-  grupo: string;
-  items: string[];
+  grupo: Bilingue;
+  items: Bilingue[];
 }
 
 export interface Proyecto {
-  nombre: string;
+  nombre: Bilingue;
   anio: string;
-  rol: string;
-  resumen: string;
+  rol: Bilingue;
+  resumen: Bilingue;
   stack: string[];
   eje: EjeId;
   enlace: string | null;
   repo: string | null;
   imagenes: string[];
   video: string | null;
-  estado: string;
+  estado: Bilingue;
 }
 
 export interface Hito {
-  periodo: string;
-  titulo: string;
-  lugar: string;
-  texto: string;
+  periodo: Bilingue;
+  titulo: Bilingue;
+  lugar: Bilingue;
+  texto: Bilingue;
 }
 
 export interface Certificacion {

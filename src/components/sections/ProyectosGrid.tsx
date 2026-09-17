@@ -3,13 +3,14 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { EJES } from "@/content/skills";
-import type { EjeId, Proyecto } from "@/content/types";
+import type { Bilingue, EjeId, Proyecto } from "@/content/types";
 import { AXIS_COLOR } from "@/lib/axis";
 import { assetUrl } from "@/lib/paths";
+import Bi from "@/components/ui/Bi";
 import Reveal from "@/components/ui/Reveal";
 import styles from "./Proyectos.module.css";
 
-const EJE_TITULO = Object.fromEntries(EJES.map((e) => [e.eje, e.titulo])) as Record<EjeId, string>;
+const EJE_TITULO = Object.fromEntries(EJES.map((e) => [e.eje, e.titulo])) as Record<EjeId, Bilingue>;
 
 const EJES_ORDEN: EjeId[] = ["X", "Y", "Z"];
 
@@ -41,12 +42,12 @@ function TarjetaProyecto({
       >
         <div className={styles.meta}>
           <span>{p.anio}</span>
-          <span className={styles.state}>{p.estado}</span>
+          <Bi value={p.estado} as="span" className={styles.state} />
         </div>
 
-        <h3 className={styles.name}>{p.nombre}</h3>
-        <p className={styles.role}>{p.rol}</p>
-        <p className={styles.summary}>{p.resumen}</p>
+        <Bi value={p.nombre} as="h3" className={styles.name} />
+        <Bi value={p.rol} as="p" className={styles.role} />
+        <Bi value={p.resumen} as="p" className={styles.summary} />
 
         {p.stack.length > 0 && (
           <div className={styles.stack}>
@@ -57,7 +58,7 @@ function TarjetaProyecto({
         )}
 
         <span className={styles.cta}>
-          Ver detalles <span aria-hidden="true">→</span>
+          <Bi value={{ es: "Ver detalles", en: "See details" }} /> <span aria-hidden="true">→</span>
         </span>
       </button>
 
@@ -141,7 +142,7 @@ export default function ProyectosGrid({ proyectos }: Props) {
           aria-pressed={filtro === "todos"}
           onClick={() => setFiltro("todos")}
         >
-          Todos
+          <Bi value={{ es: "Todos", en: "All" }} />
         </button>
         {EJES_ORDEN.map((eje) => (
           <button
@@ -152,7 +153,7 @@ export default function ProyectosGrid({ proyectos }: Props) {
             aria-pressed={filtro === eje}
             onClick={() => setFiltro(eje)}
           >
-            {EJE_TITULO[eje]}
+            <Bi value={EJE_TITULO[eje]} />
           </button>
         ))}
       </div>
@@ -162,11 +163,11 @@ export default function ProyectosGrid({ proyectos }: Props) {
           <div key={g.eje} className={styles.grupo}>
             <div className={styles.grupoTitulo}>
               <span className={styles.grupoDot} style={{ "--c": AXIS_COLOR[g.eje] } as CSSProperties} />
-              {EJE_TITULO[g.eje]}
+              <Bi value={EJE_TITULO[g.eje]} />
             </div>
             <div className={styles.grid}>
               {g.items.map(({ p, i }) => (
-                <TarjetaProyecto key={`${p.nombre}-${i}`} p={p} i={i} onAbrir={abrir} />
+                <TarjetaProyecto key={`${p.nombre.es}-${i}`} p={p} i={i} onAbrir={abrir} />
               ))}
             </div>
           </div>
@@ -176,11 +177,13 @@ export default function ProyectosGrid({ proyectos }: Props) {
         (grupoActivo ? (
           <div className={styles.grid}>
             {grupoActivo.items.map(({ p, i }) => (
-              <TarjetaProyecto key={`${p.nombre}-${i}`} p={p} i={i} onAbrir={abrir} />
+              <TarjetaProyecto key={`${p.nombre.es}-${i}`} p={p} i={i} onAbrir={abrir} />
             ))}
           </div>
         ) : (
-          <p className={styles.sinResultados}>Todavía no hay proyectos en este eje.</p>
+          <p className={styles.sinResultados}>
+            <Bi value={{ es: "Todavía no hay proyectos en este eje.", en: "No projects on this axis yet." }} />
+          </p>
         ))}
 
       {proyecto && (
@@ -219,7 +222,7 @@ export default function ProyectosGrid({ proyectos }: Props) {
                   <Image
                     key={imgIndex}
                     src={assetUrl(proyecto.imagenes[imgIndex])}
-                    alt={`${proyecto.nombre} — captura ${imgIndex + 1}`}
+                    alt={`${proyecto.nombre.es} — captura ${imgIndex + 1}`}
                     fill
                     sizes="(max-width: 640px) 100vw, 640px"
                     style={{ objectFit: "contain" }}
@@ -257,14 +260,12 @@ export default function ProyectosGrid({ proyectos }: Props) {
             <div className={styles.dialogBody}>
               <div className={styles.meta}>
                 <span>{proyecto.anio}</span>
-                <span className={styles.state}>{proyecto.estado}</span>
+                <Bi value={proyecto.estado} as="span" className={styles.state} />
               </div>
 
-              <h3 id="proyecto-modal-title" className={styles.name}>
-                {proyecto.nombre}
-              </h3>
-              <p className={styles.role}>{proyecto.rol}</p>
-              <p className={styles.summary}>{proyecto.resumen}</p>
+              <Bi value={proyecto.nombre} as="h3" className={styles.name} id="proyecto-modal-title" />
+              <Bi value={proyecto.rol} as="p" className={styles.role} />
+              <Bi value={proyecto.resumen} as="p" className={styles.summary} />
 
               {proyecto.stack.length > 0 && (
                 <div className={styles.stack}>
@@ -283,7 +284,7 @@ export default function ProyectosGrid({ proyectos }: Props) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Abrir sitio <span aria-hidden="true">↗</span>
+                      <Bi value={{ es: "Abrir sitio", en: "Open site" }} /> <span aria-hidden="true">↗</span>
                     </a>
                   )}
                   {proyecto.repo && (
@@ -293,7 +294,8 @@ export default function ProyectosGrid({ proyectos }: Props) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Ver repositorio <span aria-hidden="true">↗</span>
+                      <Bi value={{ es: "Ver repositorio", en: "View repository" }} />{" "}
+                      <span aria-hidden="true">↗</span>
                     </a>
                   )}
                 </div>

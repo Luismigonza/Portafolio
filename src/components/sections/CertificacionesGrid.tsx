@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Certificacion } from "@/content/types";
 import { assetUrl, isPdf } from "@/lib/paths";
+import Bi from "@/components/ui/Bi";
 import Reveal from "@/components/ui/Reveal";
 import styles from "./Certificaciones.module.css";
 
@@ -73,7 +74,11 @@ export default function CertificacionesGrid({ certificaciones }: Props) {
 
           const thumb = (
             <div className={styles.thumb}>
-              {!c.archivo && <span className={styles.thumbEmpty}>Pendiente</span>}
+              {!c.archivo && (
+                <span className={styles.thumbEmpty}>
+                  <Bi value={{ es: "Pendiente", en: "Pending" }} />
+                </span>
+              )}
               {c.archivo && esPdfFile && <span className={styles.thumbPdf}>PDF</span>}
               {c.archivo && !esPdfFile && (
                 <Image
@@ -94,7 +99,13 @@ export default function CertificacionesGrid({ certificaciones }: Props) {
               <span className={styles.anio}>{c.anio}</span>
               {c.archivo && (
                 <span className={styles.cta}>
-                  {esPdfFile ? "Ver PDF" : "Ver certificado"}{" "}
+                  <Bi
+                    value={
+                      esPdfFile
+                        ? { es: "Ver PDF", en: "View PDF" }
+                        : { es: "Ver certificado", en: "View certificate" }
+                    }
+                  />{" "}
                   <span aria-hidden="true">{esPdfFile ? "↗" : "→"}</span>
                 </span>
               )}

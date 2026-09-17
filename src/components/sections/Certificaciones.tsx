@@ -6,9 +6,12 @@ export default function Certificaciones() {
   return (
     <section id="certificaciones" className="section">
       <SectionHeader
-        etiqueta="Certificaciones"
-        titulo="Lo que he validado"
-        nota="Formación formal y cursos puntuales — cada uno con su respaldo."
+        etiqueta={{ es: "Certificaciones", en: "Certifications" }}
+        titulo={{ es: "Lo que he validado", en: "What I've validated" }}
+        nota={{
+          es: "Formación formal y cursos puntuales — cada uno con su respaldo.",
+          en: "Formal education and specific courses — each one with its own proof.",
+        }}
       />
 
       <CertificacionesGrid certificaciones={CERTIFICACIONES} />

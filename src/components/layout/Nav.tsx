@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { PERFIL, SECCIONES } from "@/content/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import Bi from "@/components/ui/Bi";
+import LocaleToggle from "@/components/ui/LocaleToggle";
 import styles from "./Nav.module.css";
 
 export default function Nav() {
@@ -29,9 +31,10 @@ export default function Nav() {
             className={`${styles.link} ${active === s.id ? styles.active : ""}`}
             onClick={() => goTo(s.id)}
           >
-            {s.nombre}
+            <Bi value={s.nombre} />
           </button>
         ))}
+        <LocaleToggle />
       </nav>
 
       <button
