@@ -6,6 +6,7 @@ import Ejes from "@/components/sections/Ejes";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import Proyectos from "@/components/sections/Proyectos";
+import SobreMi from "@/components/sections/SobreMi";
 import Stack from "@/components/sections/Stack";
 import Trayectoria from "@/components/sections/Trayectoria";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
+        <SobreMi />
         <Ejes />
         <Stack />
         <Proyectos />

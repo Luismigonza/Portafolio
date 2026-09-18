@@ -1,0 +1,65 @@
+.grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(28px, 5vw, 56px);
+  align-items: start;
+}
+
+.fotoFrame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid var(--grid);
+  background: var(--viewport);
+}
+
+.foto {
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05) brightness(0.95);
+}
+
+.duotone {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, var(--void) 15%, var(--select) 140%);
+  mix-blend-mode: color;
+}
+
+.edge {
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+
+.fotoFrame:hover .edge {
+  border-color: var(--select);
+}
+
+.texto {
+  padding-top: 6px;
+}
+
+.parrafo {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 15.5px;
+  max-width: 58ch;
+}
+
+.parrafo:not(:first-child) {
+  margin-top: 18px;
+}
+
+@media (max-width: 780px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fotoFrame {
+    max-width: 260px;
+  }
+}

@@ -59,3 +59,8 @@ export interface Certificacion {
   anio: string;
   archivo: string | null;
 }
+
+export interface SobreMi {
+  foto: string;
+  parrafos: Bilingue[];
+}

@@ -113,6 +113,23 @@ videos antes de comprimirlos, para no perderlos.
 
 ---
 
+## 1.5. Cambiar la foto o el texto de "Sobre mí"
+
+Archivo: [`src/content/site.ts`](src/content/site.ts), objeto `SOBRE_MI`.
+
+- `foto`: ruta dentro de `public/perfil/`. Si cambias de foto, pon el archivo ahí y
+  redimensiónalo antes a un ancho razonable (~900px) para no subir un archivo de
+  varios MB — el mismo `ffmpeg` que usas para comprimir videos sirve para fotos:
+  `ffmpeg -i original.jpg -vf "scale=900:-1" public/perfil/luis.jpg`.
+- `parrafos`: array de objetos `{ es, en }`, uno por párrafo.
+
+El efecto de color (blanco y negro + degradado naranja/oscuro encima) es CSS puro
+en `SobreMi.module.css` (`mix-blend-mode: color`) — no es un filtro aplicado a la
+imagen en sí, así que si cambias la foto el efecto se aplica solo, sin editarla
+en otro programa.
+
+---
+
 ## 2. Agregar un certificado nuevo
 
 Archivo: [`src/content/certificaciones.ts`](src/content/certificaciones.ts), array
