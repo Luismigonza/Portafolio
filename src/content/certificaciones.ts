@@ -19,4 +19,10 @@ export const CERTIFICACIONES: Certificacion[] = [
     anio: "2026",
     archivo: "/certificaciones/udemy-curso-SOLID-CleanCode.pdf",
   },
+  {
+    nombre: "Arquitectura Software Moderna: DDD, Eventos, Microservicios",
+    institucion: "Udemy",
+    anio: "2026",
+    archivo: "/certificaciones/udemy-arquitectura-software-moderna.pdf",
+  },
 ];
